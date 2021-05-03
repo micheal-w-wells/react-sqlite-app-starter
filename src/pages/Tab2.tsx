@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
-         IonList, IonItem, IonButton } from '@ionic/react';
+         IonList, IonItem, IonButton, IonInput } from '@ionic/react';
 import NoEncryption from '../components/NoEncryption';
 import Test2dbs from '../components/Test2dbs';
 import ExistingConnection from '../components/ExistingConnection';
@@ -18,6 +18,8 @@ const Tab2: React.FC = (props) => {
   const startTest = (testName: string) => {
     setStart(testName); 
   }
+
+const [testsToRun, setTestsToRun] = useState(0)
 
   return (
     <IonPage>
@@ -51,6 +53,7 @@ const Tab2: React.FC = (props) => {
             <IonButton onClick={() => startTest("TestUpgradeVersion")} expand="block">SQLite Upgrade Version Test</IonButton>
           </IonItem>
           <IonItem>
+            <IonInput onIonChange={(e) => { setTestsToRun(parseInt(e.detail.value!))}} />
             <IonButton onClick={() => startTest("TestJsonImportExport")} expand="block">SQLite Json Import Export Test</IonButton>
           </IonItem>
           <IonItem>
